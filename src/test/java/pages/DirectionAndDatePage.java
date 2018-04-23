@@ -27,42 +27,36 @@ public class DirectionAndDatePage {
 
 	@FindBy(id = "date0")
 	private WebElement depDateBox;
-	
+
 	@FindBy(id = "Submit")
 	private WebElement btBuy;
 
 	public void enterJourney(Journey oneWay2Tula) {
 		fillBox(from, oneWay2Tula.getPointOfDeparture());
 		fillBox(to, oneWay2Tula.getDestination());
-		selectDate(depDateBox, oneWay2Tula.getTravelMonth(), oneWay2Tula.getTravelDay());		
+		selectDate(depDateBox, oneWay2Tula.getTravelMonth(), oneWay2Tula.getTravelDay());
 	}
 
 	public void SearchForTrains() {
 		try {
-			new WebDriverWait(driver, 1000)
-			.until(ExpectedConditions.elementToBeClickable(btBuy));
-			
+			new WebDriverWait(driver, 1000).until(ExpectedConditions.elementToBeClickable(btBuy));
+
 			btBuy.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return;
-		}		
+		}
 	}
 
 	private void selectDate(WebElement calendarBox, String month, String day) {
 		try {
-			// click dateTime picker
-			calendarBox.findElement(By.xpath(".."))
-					.findElement(By.cssSelector("div.box-form__datetime__calendar.sh_calendar"))
-					.click();
 
-			// Select date
-			/*driver.findElement(By.xpath("//span[text()='" + month + "']"))
-					.findElement(By.xpath("../.."))
-					.findElement(By.xpath("//span[text()='" + day + "']"))
-					.click();*/
-			driver.findElement(By.xpath("//span[text()='Апрель']/ancestor::div[@class='month_wrap'][1]//span[text()=28]"))
-			.click();
+			calendarBox.findElement(By.xpath(".."))
+					.findElement(By.cssSelector("div.box-form__datetime__calendar.sh_calendar")).click();
+
+			driver.findElement(By.xpath(
+					"//span[text()='" + month + "']/ancestor::div[@class='month_wrap'][1]//span[text()=" + day + "]"))
+					.click();
 
 		} catch (Exception e) {
 			e.printStackTrace();

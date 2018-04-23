@@ -27,17 +27,17 @@ public class SeatSelectionPage {
 	private Integer countSeats() {
 		Integer retVal = 0;
 		try {
-			
-			List<WebElement> avalSeats  = driver
+
+			List<WebElement> avalSeats = driver
 					.findElements(By.xpath("//div[@class='route-item__cars-list__item j-car-list-item current']//b"));
-			for(WebElement elt : avalSeats) {
-				retVal+= Integer.valueOf(elt.getText());
+			for (WebElement elt : avalSeats) {
+				retVal += Integer.valueOf(elt.getText());
 			}
 			return retVal;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return retVal;
-		} 
+		}
 	}
 
 	private void selectATrain(String preferredTrain, Journey journey) {
@@ -47,10 +47,12 @@ public class SeatSelectionPage {
 			new WebDriverWait(driver, 1000)
 					.until(ExpectedConditions.visibilityOf(driver.findElement(By.className("j-trains-box"))));
 			driver.findElement(By.xpath("//span[contains(text(),'" + preferredTrain + "')]"
-					+ "/ancestor::div[@class='j-train'][1]//div[contains(text(),'"+journey.getComfortClass()+"')]")).click();
+					+ "/ancestor::div[@class='j-train'][1]//div[contains(text(),'" + journey.getComfortClass() + "')]"))
+					.click();
 			new WebDriverWait(driver, 1000).until(
 					ExpectedConditions.elementToBeClickable(driver.findElement(By.className("j-route-select-btn"))));
-			driver.findElement(By.className("j-route-select-btn")).click();;
+			driver.findElement(By.className("j-route-select-btn")).click();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return;
