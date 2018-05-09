@@ -29,8 +29,8 @@ public class Moscow2Tula {
 	}
 
 	@Test
-	public void BacklogPriorityTest() {
-		Journey oneWay2Tula = new Journey("Москва", "Тула", "Апрель", "30", "Купе");
+	public void MoscowToTulaTest() {
+		Journey oneWay2Tula = new Journey("Москва", "Тула", "Май", "30", "Купе");
 		String preferredTrain = "119";
 
 		directionAndDatePage.enterJourney(oneWay2Tula);
