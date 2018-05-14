@@ -40,7 +40,6 @@ public class DirectionAndDatePage {
 	public void SearchForTrains() {
 		try {
 			new WebDriverWait(driver, 1000).until(ExpectedConditions.elementToBeClickable(btBuy));
-
 			btBuy.click();
 		} catch (Exception e) {
 			e.printStackTrace();
